@@ -1,49 +1,38 @@
+const moves = ["north", "north", "north", "north", "west", "east", "west"];
 
-const moves = ['north', 'north', 'west', 'west', 'north', 'east','north']  
+function finalPosition(moves) {
+  const coordinates = [];
+  const x = [];
+  const y = [];
+  let sumY = 0;
+  let sumX = 0;
 
-function finalPosition (moves) {
-    const coordinates = [];
-    const x = [];
-
-    for (let move of moves){
-        if (move === 'north'){
-            const north = +1;
-            north.push(x);
-        } else if (move === 'south') {
-            const south = -1; 
-
-        }
-        console.log(move);
-        console.log(x);
+  for (const move of moves) {
+    if (move === "north") {
+      const north = 1;
+      sumY += north;
+      y.push(sumY);
+    } else if (move === "south") {
+      const south = -1;
+      sumY += south;
+      y.push(sumY);
+      y.push(south);
+    } else if (move === "west") {
+      const west = +1;
+      sumX += west;
+      x.push(sumX);
+    } else if (move === "east") {
+      const east = -1;
+      sumX += east;
+      x.push(sumX);
+    } else {
+      return "invalid moves";
     }
+  }
+  coordinates.push(sumX);
+  coordinates.push(sumY);
+  return coordinates;
 }
 
-
-nort = +1;
-south = -1;
-west = +1;
-east = -1;
-
-y = north - south;
-x = west - east;
-
-x.push(coordinates);
-y.push(coordinates);
-return coordinates;
-
-function chooseStations (stations) {
-    const goodStations = []
-
-    for (const station of stations){
-        const capacity = station[1];
-        if (capacity>= 20){
-            const type = station[2]
-            if (type === "school" || type === "community centre"){
-                goodStations.push(station[0])
-            }
-        }
-    }
-    return goodStations;
-}
-console.log(chooseStations(stations));
-
+console.log(finalPosition(moves));
+;
